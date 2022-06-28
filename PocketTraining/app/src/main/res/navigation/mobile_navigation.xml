@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="cz.mendelu.pockettraining.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+    <action
+        android:id="@+id/action_home_fragment_to_show_home_list"
+        app:destination="@+id/HomeListFragment"
+        >
+    </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/HomeListFragment"
+        android:name="cz.mendelu.pockettraining.ui.home.HomeListFragment"
+        android:label="Training plan"
+        tools:layout="@layout/fragment_plan" >
+
+    <argument
+        android:name="plan_id"
+        app:argType="long"
+        android:defaultValue="-1L">
+    </argument>
+        <action
+            android:id="@+id/action_show_home_list_to_home"
+            app:destination="@+id/navigation_home"
+            >
+        </action>
+
+    </fragment>
+
+
+
+
+    <fragment
+        android:id="@+id/navigation_plans"
+        android:name="cz.mendelu.pockettraining.ui.plans.PlanListFragment"
+        android:label="@string/title_plans"
+        tools:layout="@layout/fragment_plan_list">
+        <action
+            android:id="@+id/action_PlanListFragment_to_PlanFragment"
+            app:destination="@+id/PlanFragment"
+            >
+    </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/PlanFragment"
+        android:name="cz.mendelu.pockettraining.ui.plans.PlanFragment"
+        android:label="Training plan"
+        tools:layout="@layout/fragment_plan" >
+
+        <argument
+            android:name="plan_id"
+            app:argType="long"
+            android:defaultValue="-1L">
+        </argument>
+        <argument
+            android:name="idNewExercise"
+            app:argType="long"
+            android:defaultValue="-1L">
+        </argument>
+        <action
+            android:id="@+id/action_PlanFragment_to_ExerciseToplanFragment"
+            app:destination="@+id/ExerciseToPlanFragment"
+            >
+        </action>
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/ExerciseToPlanFragment"
+        android:name="cz.mendelu.pockettraining.ui.plans.ExerciseToPlanFragment"
+        android:label="Add exercise to plan"
+        tools:layout="@layout/fragment_exercise_to_plan" >
+
+        <argument
+            android:name="id"
+            app:argType="long"
+            android:defaultValue="-1L">
+        </argument>
+        <argument
+            android:name="idPlan"
+            app:argType="long"
+            android:defaultValue="-1L">
+        </argument>
+    </fragment>
+    <!-- exercises-->
+
+    <fragment
+        android:id="@+id/navigation_exercises"
+        android:name="cz.mendelu.pockettraining.ui.exercises.ExerciseListFragment"
+        android:label="@string/title_exercises"
+        tools:layout="@layout/fragment_exercise_list">
+        <action
+            android:id="@+id/action_exerciseFragment_to_AddExercise"
+            app:destination="@id/AddExerciseFragment">
+    </action>
+    </fragment>
+    <fragment
+        android:id="@+id/AddExerciseFragment"
+        android:name="cz.mendelu.pockettraining.ui.exercises.AddExerciseFragment"
+        android:label="Add exercise"
+        tools:layout="@layout/fragment_add_exercise" >
+
+        <argument
+            android:name="id"
+            app:argType="long"
+            android:defaultValue="-1L">
+        </argument>
+    </fragment>
+</navigation>
